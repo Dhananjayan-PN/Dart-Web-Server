@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hello World</title>
+  </head>
+  <body>
+    <h1>Hello World!</h1>
+    <input id="name" placeholder="Enter Name" />
+    <button id="getMessage">GET MESSAGE</button>
+    <br /><br />
+    <button id="getGenMessage">GET GENERIC MESSAGE</button>
+    <h4>Message:</h4>
+    <b><h3 id="message" style="color: red"></h3></b>
+    <br />
+    <a href="dart.png"><buton>View Awesome Image</buton></a>
+
+    <script>
+      document.getElementById("getMessage").addEventListener("click", () => {
+        fetch("http://localhost:8080/user/" + document.getElementById("name").value)
+          .then((response) => {
+            return response.json();
+          })
+          .then((data) => {
+            console.log(data);
+            document.getElementById("message").innerHTML = data.message;
+          });
+      });
+      document.getElementById("getGenMessage").addEventListener("click", () => {
+        fetch("http://localhost:8080/hello")
+          .then((response) => {
+            return response.json();
+          })
+          .then((data) => {
+            console.log(data);
+            document.getElementById("message").innerHTML = data.message;
+          });
+      });
+    </script>
+  </body>
+</html>
